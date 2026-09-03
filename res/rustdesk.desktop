@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=Codesaint Remote Support
+Name=SaintDesk
 GenericName=Remote Support
 Comment=Secure remote support by Codesaint Technologies
 Exec=rustdesk %u

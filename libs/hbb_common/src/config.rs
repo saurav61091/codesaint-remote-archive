@@ -69,7 +69,7 @@ lazy_static::lazy_static! {
     static ref ONLINE: Mutex<HashMap<String, i64>> = Default::default();
     pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new("".to_owned());
     pub static ref EXE_RENDEZVOUS_SERVER: RwLock<String> = Default::default();
-    pub static ref APP_NAME: RwLock<String> = RwLock::new("Codesaint".to_owned());
+    pub static ref APP_NAME: RwLock<String> = RwLock::new("SaintDesk".to_owned());
     static ref KEY_PAIR: Mutex<Option<KeyPair>> = Default::default();
     static ref USER_DEFAULT_CONFIG: RwLock<(UserDefaultConfig, Instant)> = RwLock::new((UserDefaultConfig::load(), Instant::now()));
     pub static ref NEW_STORED_PEER_CONFIG: Mutex<HashSet<String>> = Default::default();
@@ -114,7 +114,7 @@ const CHARS: &[char] = &[
     'm', 'n', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
 ];
 
-pub const RENDEZVOUS_SERVERS: &[&str] = &["rd.codesaint.in"];
+pub const RENDEZVOUS_SERVERS: &[&str] = &["saintdesk.codesaint.co.in"];
 pub const RS_PUB_KEY: &str = "3glq+X2FmGGoawQsUB3c2sEiQwiScFyVHOcIbYOn60c=";
 
 pub const RENDEZVOUS_PORT: i32 = 21116;

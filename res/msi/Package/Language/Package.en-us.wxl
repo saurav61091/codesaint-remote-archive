@@ -10,13 +10,13 @@ This file contains the declaration of all the localizable strings.
 	<!-- General strings -->
 	<String Id="DowngradeError" Value="A newer version of [ProductName] is already installed." />
 
-	<String Id="AR_Comment" Value="Codesaint" />
+	<String Id="AR_Comment" Value="SaintDesk" />
 
-	<String Id="F_App" Value="Codesaint" />
-	<String Id="F_App_Desc" Value="Codesaint Remote Support - main program files." />
+	<String Id="F_App" Value="SaintDesk" />
+	<String Id="F_App_Desc" Value="SaintDesk - main program files." />
 
-	<String Id="SC_Uninstall" Value="Uninstall Codesaint" />
-	<String Id="SC_Uninstall_Desc" Value="Removes Codesaint or parts of it from the computer" />
+	<String Id="SC_Uninstall" Value="Uninstall SaintDesk" />
+	<String Id="SC_Uninstall_Desc" Value="Removes SaintDesk or parts of it from the computer" />
 
 	<!-- Client related strings -->
 	<String Id="F_Client" Value="Client" />
@@ -24,18 +24,18 @@ This file contains the declaration of all the localizable strings.
 	<String Id="F_LAVFilters" Value="LAV Filters" />
 	<String Id="F_LAVFilters_Desc" Value="Recommended directshow filters for best audio and video playback experience." />
 
-	<String Id="SC_Client" Value="Codesaint" />
-	<String Id="SC_Client_Desc" Value="Start Codesaint." />
+	<String Id="SC_Client" Value="SaintDesk" />
+	<String Id="SC_Client_Desc" Value="Start SaintDesk." />
 
-	<String Id="SC_Client_Tray" Value="Codesaint Tray" />
-	<String Id="SC_Client_Tray_Desc" Value="Start Codesaint tray." />
+	<String Id="SC_Client_Tray" Value="SaintDesk Tray" />
+	<String Id="SC_Client_Tray_Desc" Value="Start SaintDesk tray." />
 
 	<!-- Server related strings -->
 	<String Id="F_Server" Value="Server" />
-	<String Id="F_Server_Desc" Value="The server part of Codesaint. Provides the MediaLibrary and other services." />
+	<String Id="F_Server_Desc" Value="The server part of SaintDesk. Provides the MediaLibrary and other services." />
 
-	<String Id="Service_DisplayName" Value="Codesaint Service" />
-	<String Id="Service_Description" Value="This service runs the Codesaint Server." />
+	<String Id="Service_DisplayName" Value="SaintDesk Service" />
+	<String Id="Service_Description" Value="This service runs the SaintDesk Server." />
 
 	<!-- Launch Conditions -->
 	<String Id="LC_OS" Value="[ProductName] requires minimum Windows 7 / 2008 R2 as operating system." />
@@ -47,6 +47,6 @@ This file contains the declaration of all the localizable strings.
 
 	<String Id="MyInstallDirDlgDesktopShortcuts" Value="Create desktop icon" />
 	<String Id="MyInstallDirDlgStartMenuShortcuts" Value="Create start menu shortcuts" />
-	<String Id="MyInstallDirDlgPrinter" Value="Install Codesaint Printer" />
+	<String Id="MyInstallDirDlgPrinter" Value="Install SaintDesk Printer" />
 
 </WixLocalization>

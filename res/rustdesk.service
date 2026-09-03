@@ -1,5 +1,5 @@
 [Unit]
-Description=Codesaint Remote Support
+Description=SaintDesk
 Requires=network.target
 After=systemd-user-sessions.service
 

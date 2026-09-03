@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "Codesaint Technologies Pvt. Ltd." "\0"
-            VALUE "FileDescription", "Codesaint Remote Support" "\0"
+            VALUE "FileDescription", "SaintDesk Remote Support" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "rustdesk" "\0"
             VALUE "LegalCopyright", "Copyright © 2026 Codesaint Technologies Pvt. Ltd. All rights reserved." "\0"
             VALUE "OriginalFilename", "rustdesk.exe" "\0"
-            VALUE "ProductName", "Codesaint" "\0"
+            VALUE "ProductName", "SaintDesk" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

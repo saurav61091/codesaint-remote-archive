@@ -1,7 +1,7 @@
 Name:       rustdesk
 Version:    1.5.0
 Release:    0
-Summary:    Codesaint Remote Support - secure remote access
+Summary:    SaintDesk - secure remote access
 License:    GPL-3.0
 URL:        https://codesaint.in
 Vendor:     Codesaint Technologies Pvt. Ltd. <contact@codesaint.in>
