@@ -25,6 +25,8 @@ Ordered by what blocks what. `[!]` marks items only SK can do.
 
 - [ ] **Windows build.** Cannot be produced on Linux — RustDesk needs MSVC and
       vcpkg, with no cross-compile path. Comes from CI, or a Windows machine.
+      The MSI and macOS packaging breaks found in run `33716192726` are fixed but
+      **unverified** — the next dispatch is what proves them.
 - [ ] **Client-facing SmartScreen guide.** Shipping unsigned is the accepted
       decision, so the friction moves to documentation: an illustrated
       "More info → Run anyway" walkthrough on codesaint.in.
@@ -65,6 +67,15 @@ Ordered by what blocks what. `[!]` marks items only SK can do.
       changing an applicationId is a store-identity decision and mobile is not
       being shipped.
 - [ ] Upstream README and docs still carry RustDesk text. Internal-only.
+
+## Open questions
+
+- [ ] `aarch64-unknown-linux-gnu` fails at "Install vcpkg dependencies". Upstream
+      infrastructure, not branding, and the default `platforms` no longer builds
+      it. Only worth chasing if an ARM Linux client ever matters.
+- [ ] macOS codesigning steps reference secrets we do not hold
+      (`MACOS_CODESIGN_IDENTITY`, `MACOS_P12_BASE64`), so the signed path is
+      inert. Unsigned dmg is what gets produced.
 
 ## Known non-issues
 

@@ -72,6 +72,29 @@ Upstream baseline: `e4539fc`.
   `generate-sbom`'s `contents: write`. The API exposes nothing about this —
   `/jobs` empty, `/logs` 404 — the message exists only on the run's web page.
 
+### Packaging
+
+The product name turns out to be load-bearing in packaging paths, and upstream
+never had to notice: `RustDesk.exe` matches the built `rustdesk.exe` on a
+case-insensitive filesystem, and `RustDesk.app` matches its own bundle. Renaming
+broke both, in places whose step names gave no hint packaging was involved.
+
+- **MSI** — `preprocess.py` locates the app as `<app-name>.exe` inside the dist.
+  The rename now happens on a *copy* of the dist, because `./rustdesk` is still
+  consumed by the portable self-extractor and the MSI template step, and only the
+  exe moves: `librustdesk.dll` and `drivers\RustDeskPrinterDriver` are payload
+  that must keep their names.
+- **macOS** — `build.py` copied the service binary into a hardcoded
+  `RustDesk.app/Contents/MacOS/`. It now reads `PRODUCT_NAME` from
+  `AppInfo.xcconfig` so the two cannot diverge again. Seven `RustDesk.app`
+  references in CI, the dmg filename, the notarisation target and a rename glob
+  now follow `env.APP_NAME`.
+- The two artifacts a client actually receives — the MSI and the portable
+  self-extractor — are named after the product.
+- The Linux binary stays `/usr/bin/rustdesk`; only its `.desktop` display name is
+  SaintDesk. Client-facing platforms are Windows and macOS, and renaming it would
+  reach into the Cargo package and the `librustdesk` symbol Flutter loads.
+
 ### Legal
 - AGPL-3.0 obligations: rebranding is permitted, but conveying builds to clients
   requires offering them the Corresponding Source. Private repositories are fine;
