@@ -71,6 +71,9 @@ Upstream baseline: `e4539fc`.
 - Fixed `startup_failure`: forks default `GITHUB_TOKEN` to read-only, which fails
   `generate-sbom`'s `contents: write`. The API exposes nothing about this —
   `/jobs` empty, `/logs` 404 — the message exists only on the run's web page.
+- Gating measured, not assumed: `-f platforms=windows,macos` produces **8 jobs
+  against 22** for the full matrix. Android, iOS, sciter, web, linux-drm,
+  appimage and flatpak skip without occupying a runner.
 
 ### Packaging
 
@@ -93,7 +96,13 @@ broke both, in places whose step names gave no hint packaging was involved.
   self-extractor — are named after the product.
 - The Linux binary stays `/usr/bin/rustdesk`; only its `.desktop` display name is
   SaintDesk. Client-facing platforms are Windows and macOS, and renaming it would
-  reach into the Cargo package and the `librustdesk` symbol Flutter loads.
+  reach into the Cargo package and the `librustdesk` symbol Flutter loads. The
+  Linux package *filenames* are likewise still `rustdesk-*`.
+
+**Verified** in run `33720955099`: `x86_64-pc-windows-msvc` and
+`aarch64-apple-darwin` both pass — the exact two jobs that failed in
+`33716192726`. Deliberately run while the repository was still public, where CI
+minutes are unmetered, because these were the last unproven changes.
 
 ### Legal
 - AGPL-3.0 obligations: rebranding is permitted, but conveying builds to clients
