@@ -2474,7 +2474,7 @@ class _AboutState extends State<_About> {
                     style: linkStyle,
                   ).marginSymmetric(vertical: 4.0)),
               Container(
-                decoration: const BoxDecoration(color: Color(0xFF2c8cff)),
+                decoration: const BoxDecoration(color: MyTheme.accent),
                 padding:
                     const EdgeInsets.symmetric(vertical: 24, horizontal: 8),
                 child: SelectionArea(
@@ -2485,8 +2485,23 @@ class _AboutState extends State<_About> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Copyright © ${DateTime.now().toString().substring(0, 4)} Purslane Tech Pte. Ltd.\n$license',
+                            'Copyright © ${DateTime.now().toString().substring(0, 4)} Codesaint Technologies Pvt. Ltd.\n$license',
                             style: const TextStyle(color: Colors.white),
+                          ),
+                          // AGPL-3.0: this build derives from RustDesk, so anyone we
+                          // convey it to must be able to obtain the modified source.
+                          // A written offer discharges that; the link is the offer.
+                          InkWell(
+                            onTap: () {
+                              launchUrlString('https://codesaint.in/remote-support/source');
+                            },
+                            child: const Text(
+                              'Based on RustDesk. Licensed under AGPL-3.0 — source available.',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 11,
+                                  decoration: TextDecoration.underline),
+                            ).marginOnly(top: 6),
                           ),
                           Text(
                             translate('Slogan_tip'),

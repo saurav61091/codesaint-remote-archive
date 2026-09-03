@@ -1,10 +1,10 @@
 [package]
 name = "rustdesk"
 version = "1.5.0"
-authors = ["rustdesk <info@rustdesk.com>"]
+authors = ["Codesaint Technologies Pvt. Ltd. <contact@codesaint.in>"]
 edition = "2021"
 build= "build.rs"
-description = "RustDesk Remote Desktop"
+description = "Codesaint Remote Support"
 default-run = "rustdesk"
 rust-version = "1.75"
 
@@ -217,10 +217,10 @@ exclude = ["vdi/host"]
 libxdo-sys = { path = "libs/libxdo-sys-stub" }
 
 [package.metadata.winres]
-LegalCopyright = "Copyright © 2026 Purslane Tech Pte. Ltd. All rights reserved."
-ProductName = "RustDesk"
-FileDescription = "RustDesk Remote Desktop"
-OriginalFilename = "rustdesk.exe"
+LegalCopyright = "Copyright © 2026 Codesaint Technologies Pvt. Ltd. All rights reserved."
+ProductName = "Codesaint"
+FileDescription = "Codesaint Remote Support"
+OriginalFilename = "Codesaint.exe"
 
 [target.'cfg(target_os="windows")'.build-dependencies]
 winres = "0.1"
