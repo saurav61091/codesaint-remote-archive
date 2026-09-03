@@ -1,10 +1,10 @@
 Name:       rustdesk
 Version:    1.5.0
 Release:    0
-Summary:    RPM package
+Summary:    Codesaint Remote Support - secure remote access
 License:    GPL-3.0
-URL:        https://rustdesk.com
-Vendor:     rustdesk <info@rustdesk.com>
+URL:        https://codesaint.in
+Vendor:     Codesaint Technologies Pvt. Ltd. <contact@codesaint.in>
 Requires:   gtk3 libxcb libXfixes alsa-lib libva2 gstreamer1-plugins-base
 Recommends: libayatana-appindicator-gtk3 libxdo
 

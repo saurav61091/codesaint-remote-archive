@@ -1,5 +1,5 @@
 [Unit]
-Description=RustDesk
+Description=Codesaint Remote Support
 Requires=network.target
 After=systemd-user-sessions.service
 

@@ -1,7 +1,7 @@
 Name:       rustdesk
 Version:    1.1.9
 Release:    0
-Summary:    RPM package
+Summary:    Codesaint Remote Support - secure remote access
 License:    GPL-3.0
 Requires:   gtk3 libxcb1 libXfixes3 alsa-utils libXtst6 libva2 gstreamer-plugins-base gstreamer-plugin-pipewire
 Recommends: libayatana-appindicator3-1 xdotool
