@@ -49,6 +49,7 @@ env:
   VCPKG_COMMIT_ID: "9e593bb18ea69cc5095e012465dcd675a822ed0d"
   ARMV7_VCPKG_COMMIT_ID: "6f29f12e82a8293156836ad81cc9bf5af41fe836" # 2025.01.13, got "/opt/artifacts/vcpkg/vcpkg: No such file or directory" with latest version
   VERSION: "1.5.0"
+  APP_NAME: "SaintDesk"
   NDK_VERSION: "r28c"
   #signing keys env variable checks
   ANDROID_SIGNING_KEY: "${{ secrets.ANDROID_SIGNING_KEY }}"
@@ -375,7 +376,10 @@ jobs:
           python3 ./generate.py -f ../../rustdesk/ -o . -e ../../rustdesk/rustdesk.exe
           popd
           mkdir -p ./SignOutput
-          mv ./target/release/rustdesk-portable-packer.exe ./SignOutput/rustdesk-${{ env.VERSION }}-${{ matrix.job.arch }}.exe
+          # This self-extractor is the file a client actually downloads and runs,
+          # so it carries the product name. The exe embedded inside it keeps the
+          # build's own name -- the extractor locates it by that.
+          mv ./target/release/rustdesk-portable-packer.exe ./SignOutput/${{ env.APP_NAME }}-${{ env.VERSION }}-${{ matrix.job.arch }}.exe
 
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@6fb02220983dee41ce7ae257b6f4d8f9bf5ed4ce # v2
@@ -386,14 +390,28 @@ jobs:
         # is x64 / ARM64; the produced Package.msi is globbed since its bin/<platform>/ dir varies.
         if: env.UPLOAD_ARTIFACT == 'true'
         run: |
+          # preprocess.py locates the app as <app-name>.exe inside the dist. Upstream
+          # never needs a rename because Windows is case-insensitive, so its
+          # RustDesk.exe already matches the built rustdesk.exe. SaintDesk.exe does
+          # not, and the MSI build fails looking for a file that is not there.
+          #
+          # The rename happens on a copy: ./rustdesk is still consumed by the
+          # portable self-extractor and the MSI template step further down, and both
+          # expect the original name. Only the exe moves -- librustdesk.dll and
+          # drivers\RustDeskPrinterDriver are payload and must keep theirs.
+          cp -r ./rustdesk ./rustdesk-msi
+          mv ./rustdesk-msi/rustdesk.exe ./rustdesk-msi/${{ env.APP_NAME }}.exe
           pushd ./res/msi
-          python preprocess.py --arp -d ../../rustdesk
+          python preprocess.py --arp -d ../../rustdesk-msi
           nuget restore msi.sln
           $msiPlatform = if ('${{ matrix.job.arch }}' -eq 'aarch64') { 'ARM64' } else { 'x64' }
           msbuild msi.sln -p:Configuration=Release -p:Platform=$msiPlatform /p:TargetVersion=Windows10
           $msi = Get-ChildItem ./Package/bin/*/Release/en-us/Package.msi | Select-Object -First 1
-          mv $msi.FullName ../../SignOutput/rustdesk-${{ env.VERSION }}-${{ matrix.job.arch }}.msi
-          sha256sum ../../SignOutput/rustdesk-*.msi
+          mv $msi.FullName ../../SignOutput/${{ env.APP_NAME }}-${{ env.VERSION }}-${{ matrix.job.arch }}.msi
+          popd
+          git checkout -- res/msi
+          rm -r -fo ./rustdesk-msi
+          sha256sum ./SignOutput/${{ env.APP_NAME }}-*.msi
 
       - name: Build pre-built MSI template
         # Two things this works around: preprocess.py rewrites res/msi in place, so the
